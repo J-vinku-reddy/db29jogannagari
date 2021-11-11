@@ -44,10 +44,10 @@ async function recreateDB(){
   let instance1 = new 
 cars({cName:"ferrari",  cSize:303424, 
 cCost:990000}); 
-let instance1 = new 
+let instance2 = new 
 cars({cName:"lambargini",  cSize:414423, 
 cCost:3434430}); 
-let instance1 = new 
+let instance3 = new 
 cars({cName:"tesla",  cSize:41321, 
 cCost:667678}); 
   instance1.save( function(err,doc) { 
