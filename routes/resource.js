@@ -2,13 +2,13 @@ var express = require('express');
 var router = express.Router(); 
  
 // Require controller modules. 
-var api_controller = require('../controllers/api'); 
+
 var cars_controller = require('../controllers/cars'); 
  
 /// API ROUTE /// 
 
 // GET resources base. 
-router.get('/', api_controller.api); 
+
 
 /// COSTUME ROUTES /// 
  
