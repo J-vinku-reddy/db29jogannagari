@@ -23,10 +23,20 @@ exports.cars_create_post = function(req, res) {
     res.send('NOT IMPLEMENTED: cars create POST'); 
 }; 
  
-// Handle cars delete form on DELETE. 
-exports.cars_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: cars delete DELETE ' + req.params.id); 
-}; 
+// Handle Cars delete on DELETE. 
+exports.cars_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+
+        result = await cars.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+};  
+
  
 // Handle cars update form on PUT. 
 exports.cars_update_put = function(req, res) { 
@@ -93,5 +103,62 @@ ${JSON.stringify(req.body)}`)
         res.status(500) 
         res.send(`{"error": ${err}: Update for id ${req.params.id} 
 failed`); 
+    } 
+}; 
+// Handle a show one view with id specified by query
+exports.cars_view_one_Page = async function(req, res) {
+    console.log("single view for id "  + req.query.id)
+    try{
+        result = await cars.findById( req.query.id)
+        res.render('carsdetail', {
+            title: 'cars Detail', 
+            toShow: result
+        });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+ // Handle building the view for creating a cars. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.cars_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('carscreate', { title: 'Cars Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle building the view for updating a cars. 
+// query provides the id 
+exports.cars_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await cars.findById(req.query.id) 
+        res.render('carsupdate', { title: 'cars Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a delete one view with id from query 
+exports.cars_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await cars.findById(req.query.id) 
+        res.render('carsdelete', { title: 'cars Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
     } 
 }; 

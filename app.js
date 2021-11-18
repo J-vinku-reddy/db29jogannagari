@@ -12,7 +12,8 @@ useUnifiedTopology: true});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var cars = require("./models/cars"); 
+var cars = require('./models/cars'); 
+var carsRouter = require('./routes/cars');
 var resourceRouter = require('./routes/resource');
 
 var app = express();
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/cars', carsRouter);
 app.use('/resource', resourceRouter);
 //Get the default connection 
 var db = mongoose.connection; 
@@ -58,11 +60,11 @@ cCost:667678});
   }); 
   instance2.save( function(err,doc) { 
     if(err) return console.error(err); 
-    console.log("First object saved") 
+    console.log("Second object saved") 
 }); 
 instance3.save( function(err,doc) { 
   if(err) return console.error(err); 
-  console.log("First object saved") 
+  console.log("Third object saved") 
 }); 
 } 
  

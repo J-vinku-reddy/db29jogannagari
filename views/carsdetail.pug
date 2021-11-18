@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1(class="Title")= title
+  
+   if (toShow == null)
+    h2 No instance to Update
+   else
+    - let carsid = toShow._id   
+    - let cName = toShow.cName
+    - let cSize = toShow.cSize
+    - let cCost= toShow.cCost
+    div
+      div.row
+        div(class='carsAttr mr-3') cars ID is:
+        div #{carsid}
+      div.row
+        div(class='carsAttr mr-3') cars carsType is:
+        div #{cName}
+      div.row
+        div(class='carsAttr mr-3') cars Duration is:
+        div #{cSize}
+      div.row
+        div(class='carsAttr mr-3') cars Cost is:
+        div #{cCost}

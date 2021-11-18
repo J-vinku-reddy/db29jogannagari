@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+.carsAttr { 
+  background-color: aquamarine; 
+  width: 150px; 
+  text-align:left;
+  padding: 8px;
+  margin: 5px;
+  flex-wrap: nowrap;
+  border-radius: 5px;
+}
+.Title{
+  color: goldenrod;
+  font-weight: 500;
+  font-family: sans-serif;
+}
